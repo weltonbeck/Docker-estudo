@@ -1,4 +1,4 @@
-## Docker CakePHP
+## Docker PHP + MYSQL
 
 `docker-compose up -d` Para inicializar o server
 

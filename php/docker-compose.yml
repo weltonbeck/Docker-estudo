@@ -4,6 +4,8 @@ services:
     build:
       dockerfile: ./docker/Dockerfile
       context: .
+    image: welton/php-5.6-apache
+    container_name: php-5.6-apache
     ports:
       - "8080:80"
       - "443:443"
@@ -14,6 +16,7 @@ services:
 
   db:
     image: mysql:5.7
+    container_name: mysql-db
     volumes:
       - /var/lib/mysql
     ports:

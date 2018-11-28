@@ -1,35 +1,24 @@
-version: '3'
+version: "3"
 services:
-  application:
-    image: waldemarnt/cakephp
+  php:
+    image: azukiapp/php-fpm
+    container_name: cakephp-fpm
+    ports:
+      - "80:80"
     volumes:
-      - ./:/var/www/cake-php
-    tty: true
+      - ./app:/var/www/public
+    links:
+      - db
 
   db:
-    image: mysql
+    image: mysql:5.7
+    container_name: mysql-db
+    volumes:
+      - /var/lib/mysql
     ports:
       - 3306:3306
     environment:
       MYSQL_ROOT_PASSWORD: root
       MYSQL_DATABASE: my_db
-      MYSQL_USER: root
-      MYSQL_PASSWORD: root
-  php:
-    image: bitnami/php-fpm
-    expose:
-      - 9000
-    volumes_from:
-      - application
-    links:
-      - db
-  nginx:
-    image: waldemarnt/cakephp-nginx
-    ports:
-      - 8080:80
-    links:
-      - php
-    volumes_from:
-      - application
-    volumes:
-      - ./logs/nginx/:/var/log/nginx
+      MYSQL_USER: docker
+      MYSQL_PASSWORD: docker

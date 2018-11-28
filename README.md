@@ -20,6 +20,8 @@ estudo de docker
 
 `docker rmi YOUR_IMAGE_NAME` remove uma imagem
 
+`docker rmi $(docker images -a -q)` remove todas as imagens
+
 ### Compose
 
 `docker-compose build` faz o build
