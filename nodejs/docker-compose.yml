@@ -1,0 +1,17 @@
+version: "3"
+services:
+  web:
+    build:
+      dockerfile: ./docker/Dockerfile
+      context: .
+    image: welton/nodejs
+    container_name: nodejs
+    ports:
+        - "8080:3000"
+    depends_on:
+        - mongo
+        
+  mongo:
+    image: mongo
+    ports:
+        - "27017:27017"

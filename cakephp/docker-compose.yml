@@ -1,0 +1,25 @@
+version: '3.1'
+services:
+  web:
+    build:
+      context: ./docker
+    volumes:
+      - ./html/app:/var/www/html
+    environment:
+      APACHE_DOCUMENT_ROOT: /var/www/html/webroot
+    ports:
+      - "8080:80"
+    depends_on:
+      - db
+    tty: true
+    stdin_open: true
+
+  db:
+    image: mysql
+    ports:
+      - 3306:3306
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: my_db
+      MYSQL_USER: root
+      MYSQL_PASSWORD: root
