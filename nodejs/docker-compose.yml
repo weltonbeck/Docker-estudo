@@ -7,11 +7,14 @@ services:
     image: welton/nodejs
     container_name: nodejs
     ports:
-        - "8080:3000"
+      - "8080:3000"
     depends_on:
-        - mongo
+      - mongo
+    volumes:
+      - ./:/var/www
+      - /var/www/node_modules # Remove this if you have pure JS dependencies
         
   mongo:
     image: mongo
     ports:
-        - "27017:27017"
+      - "27017:27017"
