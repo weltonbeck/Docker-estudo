@@ -6,6 +6,4 @@
 
 `docker exec -it YOUR_CONTAINER_ID /bin/bash` Entra no shell
 
-`composer create-project --prefer-dist cakephp/app app` cria o projeto cakephp
-
 http://localhost:8080/
