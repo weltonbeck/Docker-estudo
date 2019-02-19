@@ -1,12 +1,15 @@
 version: "3"
 services:
   php:
-    image: azukiapp/php-fpm
+    build:
+      dockerfile: ./docker/Dockerfile
+      context: .
+    image: welton/cakephp-fpm
     container_name: cakephp-fpm
     ports:
       - "80:80"
     volumes:
-      - ./app:/var/www/public
+      - ./:/var/www/public
     links:
       - db
 
