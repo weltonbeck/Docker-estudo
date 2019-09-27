@@ -1,0 +1,40 @@
+version: "3"
+services:
+  web:
+    build:
+      dockerfile: ./web.Dockerfile
+      context: .
+    image: welton/nodejs-pm2
+    container_name: nodejs-pm2
+    ports:
+      - "8080:3000"
+    env_file:
+      - ./app/.env
+    networks:
+      - nodejs-pm2-network
+    depends_on:
+      - db
+    links:
+      - db
+    volumes:
+      - ./app:/var/www
+      - /var/www/node_modules
+        
+  db:
+    image: mysql:5.7
+    container_name: nodejs-pm2-mysql
+    volumes:
+      - ./mysql/:/var/lib/mysql
+    ports:
+      - 3306:3306
+    networks:
+      - nodejs-pm2-network
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: my_db
+      MYSQL_USER: docker
+      MYSQL_PASSWORD: docker
+
+networks:
+  nodejs-pm2-network:
+    driver: bridge

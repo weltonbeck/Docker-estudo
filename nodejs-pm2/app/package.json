@@ -1,0 +1,17 @@
+{
+  "name": "docker-nodejs-pm2",
+  "version": "1.0.0",
+  "description": "",
+  "main": "app.js",
+  "scripts": {
+    "start": "pm2 startOrRestart ecosystem.config.js && pm2 logs"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.16.4"
+  },
+  "devDependencies": {
+    "pm2": "^3.2.2"
+  }
+}
